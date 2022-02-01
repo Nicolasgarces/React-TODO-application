@@ -6,7 +6,9 @@ import rigoImage from "../../img/rigo-baby.jpg";
 //create your first component
 const Home = () => {
 	const [tarea, setTarea] = useState("");
+	// lista: guarda el arrary
 	const [lista, setLista] = useState([]);
+	// setLIsta actualiza la lista
 
 	const guardarDatos = (e) => {
 		e.preventDefault();
@@ -18,7 +20,7 @@ const Home = () => {
 		<div>
 			<form onSubmit={guardarDatos}>
 				<div className="form-group">
-					<label htmlFor="exampleInputEmail1">Email address</label>
+					<label htmlFor="exampleInputEmail">TODOS</label>
 					<input
 						type="text"
 						className="form-control"
@@ -28,21 +30,17 @@ const Home = () => {
 						onChange={(e) => setTarea(e.target.value)}
 						value={tarea}
 					/>
-					<small id="emailHelp" className="form-text text-muted">
-						We'll never share your email with anyone else.
-					</small>
+					<ul>
+						{lista.map((tarea, index) => (
+							<li key={index}>{tarea}</li>
+							// se debe agregar  un icono que contenga un evento para eliminar un elemnto de la lista
+						))}
+					</ul>
+					<button type="reset" class="btn btn-primary" value={lista}>
+						Submit
+					</button>
 				</div>
-				<button type="submit" className="btn btn-primary">
-					Submit
-				</button>
 			</form>
-			<ul>
-				<ol>
-					{setLista.map((lista) => (
-						<li key={lista}>{lista}</li>
-					))}
-				</ol>
-			</ul>
 		</div>
 	);
 };
